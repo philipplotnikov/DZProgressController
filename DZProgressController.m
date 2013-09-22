@@ -416,7 +416,8 @@ static void dispatch_semaphore_execute(dispatch_semaphore_t semaphore, DZProgres
 							 
 							 if (_wasHiddenBlock)
 								 _wasHiddenBlock(self);
-							 
+                           
+                             self.window.hidden = YES;
 							 self.window.rootViewController = nil;
 							 self.window = nil;
                            
