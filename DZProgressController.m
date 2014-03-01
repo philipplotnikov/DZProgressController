@@ -231,8 +231,6 @@ static void dispatch_semaphore_execute(dispatch_semaphore_t semaphore, DZProgres
 }
 
 - (void)dealloc {
-	if (_animationSemaphore)
-		dispatch_release(_animationSemaphore);
 	[_label removeObserver:self forKeyPath:@"text"];
 	[_label removeObserver:self forKeyPath:@"font"];
 	[_label removeObserver:self forKeyPath:@"textColor"];
