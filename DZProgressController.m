@@ -112,7 +112,7 @@ static char DZProgressControllerLabelContext;
 static void dispatch_reentrant_main(dispatch_block_t block) {
 	NSCParameterAssert(block);
 	dispatch_queue_t queue = dispatch_get_main_queue();
-	if (dispatch_get_current_queue() == queue) {
+	if (dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) == queue) {
 		block();
 	} else {
 		dispatch_async(queue, block);
@@ -304,12 +304,12 @@ static void dispatch_semaphore_execute(dispatch_semaphore_t semaphore, DZProgres
 		UILabel *label = [[UILabel alloc] initWithFrame: CGRectZero];
 		label.font = [UIFont boldSystemFontOfSize:24.0f];
 		label.adjustsFontSizeToFitWidth = NO;
-		label.textAlignment = UITextAlignmentCenter;
+		label.textAlignment = NSTextAlignmentCenter;
 		label.opaque = NO;
 		label.textColor = [UIColor whiteColor];
 		label.backgroundColor = nil;
 		label.numberOfLines = 0;
-		label.lineBreakMode = UILineBreakModeWordWrap;
+		label.lineBreakMode = NSLineBreakByWordWrapping;
 		label.contentMode = UIViewContentModeLeft;
 		[label addObserver: self forKeyPath: @"text" options: 0 context: &DZProgressControllerLabelContext];
 		[label addObserver: self forKeyPath: @"font" options: 0 context: &DZProgressControllerLabelContext];
